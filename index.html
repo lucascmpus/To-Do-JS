@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAZNJREFUSEu1lkFOwkAUhv/XkOCiRG4gSxJo1BOoJxBu0G6k7LiB5QawQlbgCaw3wBtgGAjLegNMu9Ck6TNTpsYQbKEps+qi/b//f/PmTQknXnRifewFPDWbcwCsRZH1sFrJ59xrP8AwOFEkZqcjRD8vIRMQCzPPOQzb3fXaOxaUCmDmOwBTIroAsAGzYwsxPAaSCrAXC5rUatXvSmUK4F6lmZWDoG153uYQUCYgERkbRosBCTqXaQiwOouFmwU5GCCFZJovXXeJ6EalcctBYKWlOQrwm6bR6LGmOSqNx8xWV4jZvjS5AFJoVK/XqFRyQXSphAdl3+/vpskNSNyOmk2HiB6TdraFuP6bpGjAuy3EVSEAVaIXEG0FmYe2EL3dfciVYLzdZFmWKjN/ADAL2eT40Om6dH0bmwaez3y/V0ibqoM2ka4BfBJgFnLQlOsJiFqqvq9l3zcLGRVy2BGRdF2LXUeR01kuB1nj4eAuSl5k5jeEoVn4uN52H/e7QsixkGulXZnQosg8yZWZy+o/H538r+IHql/kGfhU/v8AAAAASUVORK5CYII=" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body onload="att()">
+
+    <div class="container">        
+        <h5 class="text-center mt-5 mb-5">To Do List</h5>
+
+
+        <div class="d-flex">
+            <input type="text" placeholder="Entre uma tarefa" class="form-control" id="inputText">
+            <select class="form-select" id="selectStatus">
+                <option value="1" selected>Selecione status</option>
+                <option value="Fazer">Fazer</option>
+                <option value="Fazendo">Fazendo</option>
+            </select>
+            <button id="addTask" class="btn btn-warning rounded-1">Enviar</button>
+        </div>
+
+        <table class="table table-bordered mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Tarefas</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">#</th>
+                    <th scope="col">#</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
