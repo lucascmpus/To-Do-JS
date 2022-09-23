@@ -22,8 +22,8 @@ const addTask = () => {
 const loadTasks = () => {
     rowBody.innerHTML = '';
     todoList = JSON.parse(localStorage.getItem('todolist')) ?? []
-    todoList.forEach((item)=>{
-        insertTaskWindow(item.item, item.status)
+    todoList.forEach((item, indice)=>{
+        insertTaskWindow(item.item, item.status, indice)
     })
 }
 
@@ -34,48 +34,43 @@ const updateTable = () => {
 }
 
 // insert task 
-const insertTaskWindow = (item, status) => {
+const insertTaskWindow = (item, status, indice) => {
     const row = document.createElement('tr');
     row.innerHTML = `
-    <th>${item}</th>
-    <td onclick="attStatus(${item})">${status}</td>
+    <th data-indice=${indice} >${item}</th>
+    <td data-indice=${indice}>${status}</td>
 
-    <td>
-        <button type="button" class="btn btn-primary btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <th>
+        <button data-indice=${indice} id="edit" type="button" class="btn btn-primary btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Editar
         </button>
-    </td>
+    </th>
 
-    <td>
-        <button onclick="deleteTask(${item})" type="button" class="btn btn-danger btn-sm">Excluir</button>
-    </td>
+    <th>
+        <button data-indice=${indice} id="delete" type="button" class="btn btn-danger btn-sm">Excluir</button>
+    </th>
     ` 
     rowBody.appendChild(row)
     inputAdd.value = ''
 }
 
-// delete
-const deleteTask = (item) => {
-    var list = JSON.parse(localStorage.getItem('todolist')).filter(items => items.item != item);
-    localStorage.setItem('todolist', JSON.stringify(list))    
-    loadTasks()
-}
+
+
 
 // att status
-const attStatus = (item) =>{
+const attStatux = (item) =>{
     var list = JSON.parse(localStorage.getItem('todolist'))
-    var itemx = item.toString()
     list.forEach((items) => {
-        if(items.item == itemx && items.status == "Fazer"){
-            items.item = itemx;
+        if(items.item == item && items.status == "Fazer"){
+            items.item = item;
             items.status = "Fazendo"
         }
-        else if (items.item == itemx && items.status == "Fazendo"){
-            items.item = itemx;
+        else if (items.item == item && items.status == "Fazendo"){
+            items.item = item;
             items.status = "Concluido"
         }
-        else if (items.item == itemx && items.status == "Concluido"){
-            items.item = itemx;
+        else if (items.item == item && items.status == "Concluido"){
+            items.item = item;
             items.status = "Fazer"
         }
     })
@@ -83,20 +78,64 @@ const attStatus = (item) =>{
     loadTasks()    
 }
 
-// test edit button
-const editTask = (item) => {
-    console.log(item)
-    var valorEditInput = editInput.value;
+// deleteTask and attStatus
+const deletarTarefa = (indice) => {
+    todoList.splice(indice,1)
+    updateTable();
+    loadTasks()
+}
+
+const attStatus = (index,textContent) =>{
     var list = JSON.parse(localStorage.getItem('todolist'))
+    
+    if (textContent == 'Fazer'){
+        list.forEach((items, indice) =>{
+            if(items.status == 'Fazer' && indice == index){
+                items.status = 'Fazendo'
+            }
+        })
+        localStorage.setItem('todolist', JSON.stringify(list))
+        loadTasks()
+    } else if (textContent == 'Fazendo'){
+        list.forEach((items, indice) =>{
+            if(items.status == 'Fazendo' && indice == index){
+                items.status = 'Concluido'
+            }
+        })
+        localStorage.setItem('todolist', JSON.stringify(list))
+        loadTasks()
+    } else if (textContent == 'Concluido'){
+        list.forEach((items, indice) =>{
+            if(items.status == 'Concluido' && indice == index){
+                items.status = 'Fazer'
+            }
+        })
+        localStorage.setItem('todolist', JSON.stringify(list))
+        loadTasks()
+    }
+}
 
-    list.filter(items => items.item != item)
+const clickItem = (e) => {
+    const elemento = e.target;
+    
+    if (elemento.id == 'delete'){
+        const indice = elemento.dataset.indice;
+        deletarTarefa(indice)
+    } 
 
-    localStorage.setItem('todolist', JSON.stringify(list))
-    loadTasks()   
+    if (elemento.tagName == 'TD'){
+        const index = elemento.dataset.indice;
+        const textContent = elemento.textContent;
+        attStatus(index, textContent)
+    }       
+    
 }
 
 
 // events to add task
+
+document.getElementById('table').addEventListener('click', clickItem)
+
 buttonAdd.addEventListener('click', function () {
     if(inputAdd.value != '' && selectStatus.value != 1){
         addTask();
