@@ -1,10 +1,12 @@
 const buttonAdd = document.getElementById('addTask');
 const inputAdd = document.getElementById('inputText');
 const selectStatus = document.getElementById('selectStatus');
-const rowBody = document.getElementById('tbody')
+const rowBody = document.getElementById('tbody');
+const editInput = document.getElementById('newName');
 
 var todoList = [];
 
+// pre load 
 const att = () => {
     loadTasks();
     updateTable();
@@ -16,6 +18,7 @@ const addTask = () => {
     localStorage.setItem('todolist', JSON.stringify(todoList))
 }
 
+// load task
 const loadTasks = () => {
     rowBody.innerHTML = '';
     todoList = JSON.parse(localStorage.getItem('todolist')) ?? []
@@ -24,40 +27,73 @@ const loadTasks = () => {
     })
 }
 
+// update table
 const updateTable = () => {
     localStorage.setItem('todolist', JSON.stringify(todoList))
     loadTasks()
 }
 
+// insert task 
 const insertTaskWindow = (item, status) => {
     const row = document.createElement('tr');
     row.innerHTML = `
     <th>${item}</th>
-    <td>${status}</td>
+    <td onclick="attStatus(${item})">${status}</td>
 
     <td>
-        <button onclick="editTask()" type="button" class="btn btn-warning btn-sm">Editar</button>
+        <button type="button" class="btn btn-primary btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Editar
+        </button>
     </td>
 
     <td>
-        <button onclick="deleteTask()" type="button" class="btn btn-danger btn-sm">Excluir</button>
+        <button onclick="deleteTask(${item})" type="button" class="btn btn-danger btn-sm">Excluir</button>
     </td>
-    `
+    ` 
     rowBody.appendChild(row)
     inputAdd.value = ''
 }
 
-// edit and delete
-
-const editTask = () => {
-    console.log('editado...')
+// delete
+const deleteTask = (item) => {
+    var list = JSON.parse(localStorage.getItem('todolist')).filter(items => items.item != item);
+    localStorage.setItem('todolist', JSON.stringify(list))    
+    loadTasks()
 }
 
-const deleteTask = () => {
-    console.log('deletando...')
+// att status
+const attStatus = (item) =>{
+    var list = JSON.parse(localStorage.getItem('todolist'))
+    var itemx = item.toString()
+    list.forEach((items) => {
+        if(items.item == itemx && items.status == "Fazer"){
+            items.item = itemx;
+            items.status = "Fazendo"
+        }
+        else if (items.item == itemx && items.status == "Fazendo"){
+            items.item = itemx;
+            items.status = "Concluido"
+        }
+        else if (items.item == itemx && items.status == "Concluido"){
+            items.item = itemx;
+            items.status = "Fazer"
+        }
+    })
+    localStorage.setItem('todolist', JSON.stringify(list))
+    loadTasks()    
 }
 
+// test edit button
+const editTask = (item) => {
+    console.log(item)
+    var valorEditInput = editInput.value;
+    var list = JSON.parse(localStorage.getItem('todolist'))
 
+    list.filter(items => items.item != item)
+
+    localStorage.setItem('todolist', JSON.stringify(list))
+    loadTasks()   
+}
 
 
 // events to add task
