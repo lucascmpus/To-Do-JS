@@ -10,6 +10,7 @@ var todoList = [];
 const att = () => {
     loadTasks();
     updateTable();
+    alert('Para atualizar uma tarefa, clique em seu status!')
 }
 
 // add task
