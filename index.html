@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAZNJREFUSEu1lkFOwkAUhv/XkOCiRG4gSxJo1BOoJxBu0G6k7LiB5QawQlbgCaw3wBtgGAjLegNMu9Ck6TNTpsYQbKEps+qi/b//f/PmTQknXnRifewFPDWbcwCsRZH1sFrJ59xrP8AwOFEkZqcjRD8vIRMQCzPPOQzb3fXaOxaUCmDmOwBTIroAsAGzYwsxPAaSCrAXC5rUatXvSmUK4F6lmZWDoG153uYQUCYgERkbRosBCTqXaQiwOouFmwU5GCCFZJovXXeJ6EalcctBYKWlOQrwm6bR6LGmOSqNx8xWV4jZvjS5AFJoVK/XqFRyQXSphAdl3+/vpskNSNyOmk2HiB6TdraFuP6bpGjAuy3EVSEAVaIXEG0FmYe2EL3dfciVYLzdZFmWKjN/ADAL2eT40Om6dH0bmwaez3y/V0ibqoM2ka4BfBJgFnLQlOsJiFqqvq9l3zcLGRVy2BGRdF2LXUeR01kuB1nj4eAuSl5k5jeEoVn4uN52H/e7QsixkGulXZnQosg8yZWZy+o/H538r+IHql/kGfhU/v8AAAAASUVORK5CYII=" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -39,26 +41,27 @@
             <tbody id="tbody">
                 
             </tbody>
-        </table>
-                
-        <!-- MODAL -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Editar tarefa</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <input id="newName" type="text" class="form-control" placeholder="Digite o novo nome da tarefa">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                  <button onclick="editTask(newName.value)" type="button" class="btn btn-primary" data-bs-dismiss="modal">Salvar alterações</button>
+          </table>
+          
+          <!-- MODAL -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content" id="TESTE">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar tarefa <span id="numero-tarefa"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <input id="indice-tarefa-edicao" type="hidden">
+                    <input id="modal-edit-nome-tarefa" type="text" class="form-control" placeholder="Digite o novo nome da tarefa">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="save-edit-task">Salvar alterações</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
     </div>
 
