@@ -6,7 +6,7 @@ export const openEditTaskModal = (index) => {
   elementsModal.modal.show();
 }
 
-export const saveEditTaskModal = (newNameTask) => {
+export const saveEditTaskModal = () => {
   const list = JSON.parse(localStorage.getItem('todolist'));
 
   const taskNumber = Number(elementsModal.taskNumber.textContent);
@@ -18,6 +18,6 @@ export const saveEditTaskModal = (newNameTask) => {
   });
 
   localStorage.setItem('todolist', JSON.stringify(list));
-  elementsModal.inputEdit.value = ''
-  loadTask()
+  elementsModal.inputEdit.value = '';
+  loadTask();
 }

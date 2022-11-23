@@ -22,7 +22,7 @@ export const loadTask = () => {
   elements.todo = JSON.parse(localStorage.getItem('todolist')) ?? [];
 
   elements.todo.forEach((item, indice) => {
-    renderTask(item.item, indice)
+    renderTask(item.item, indice);
   });
 };
 

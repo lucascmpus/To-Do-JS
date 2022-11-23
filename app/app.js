@@ -15,8 +15,9 @@ elements.form.addEventListener('submit', (event) => {
   if (elements.input.value != '') {
     addTask();
     updateTable();
+    elements.input.value = '';
   } else {
-    alert('teste')
+    alert('O campo está vazio!');
   }
 
 });
@@ -26,7 +27,7 @@ elements.table.addEventListener('click', (event) => {
   const { indice } = event.target.dataset;
 
   if (className.includes('edit')) {
-    openEditTaskModal(indice)
+    openEditTaskModal(indice);
   }
 
   if (className.includes('delete')) {
@@ -41,7 +42,7 @@ elementsModal.btnEdit.addEventListener('click', (event) => {
   const input = elementsModal.inputEdit.value;
 
   if (input != '') {
-    saveEditTaskModal(input)
+    saveEditTaskModal();
   }
 
   elementsModal.modal.hide();
