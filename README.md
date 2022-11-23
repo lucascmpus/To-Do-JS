@@ -1,6 +1,6 @@
 # To-Do-JS
 
-![layout](https://github.com/lucascmpus/To-Do-JS/tree/master/assets/layout-view.png)
+![layout](https://github.com/lucascmpus/To-Do-JS/blob/master/assets/layout-view.png)
 
 ## Sobre o projeto
 
