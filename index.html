@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
 </head>
-<body onload="att()">
+<body>
 
     <div class="container">        
         <h5 class="text-center mt-5 mb-5">To Do List</h5>
@@ -21,11 +21,6 @@
         <form action="" id="form-task">
           <div class="d-flex">
               <input type="text" placeholder="Entre uma tarefa" class="form-control" id="input-name-task">
-              <select class="form-select" id="select-status-task">
-                  <option value="1" selected>Selecione status</option>
-                  <option value="Fazer">Fazer</option>
-                  <option value="Fazendo">Fazendo</option>
-              </select>
               <button id="addTask" class="btn btn-warning rounded-1">Enviar</button>
           </div>
         </form>
@@ -35,7 +30,6 @@
             <thead>
                 <tr>
                     <th scope="col">Tarefas</th>
-                    <th scope="col">Status</th>
                     <th scope="col">#</th>
                     <th scope="col">#</th>
                 </tr>
@@ -46,7 +40,7 @@
           </table>
           
           <!-- MODAL -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content" id="TESTE">
                   <div class="modal-header">
@@ -54,7 +48,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <input id="indice-tarefa-edicao" type="hidden">
+                    <input id="task-number" type="hidden">
                     <input id="modal-edit-task-name" type="text" class="form-control" placeholder="Digite o novo nome da tarefa">
                   </div>
                   <div class="modal-footer">
